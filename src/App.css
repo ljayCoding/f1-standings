@@ -1,25 +1,10 @@
-.standings-button {
-  all: unset;
-  background-color: #8b1818; /* Green */
-  border-radius: 15px;
-  color: white;
-  padding: 10px 15px;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  margin: 2px;
-  width: 100px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.standings-button:hover {
-  color: black;
-}
-
 .main-heading {
-  background-color: #8b1818;
   color: white;
   text-align: center;
-  margin: 2px;
+  margin-bottom: 10px;
   padding: 5px;
+}
+
+body {
+  background-color: #003566;
 }

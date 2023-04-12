@@ -1,31 +1,38 @@
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Typography } from '@mui/material';
 import './app.css';
+import NavBar from './components/NavBar/NavBar';
+import ConstructorList from './components/ConstructorList/ConstructorList';
+import DriverList from './components/DriverList/DriverList';
+import Home from './components/Home/Home';
+import { Route, Routes } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
-      <div>
-        <h1 className="main-heading">F1 Standings</h1>
-        <Link to="/constructor-standings">
-          <button
-            id="standings-button"
-            className="standings-button"
-            type="button"
+    <BrowserRouter>
+      <>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Typography
+            variant="h2"
+            className="main-heading"
+            fontSize="26px"
+            fontWeight="Bold"
           >
-            Constructor Standings
-          </button>
+            F1 Standings
+          </Typography>
         </Link>
-        <Link to="/driver-standings">
-          <button
-            id="standings-button"
-            className="standings-button"
-            type="button"
-          >
-            Driver Standings
-          </button>
-        </Link>
-      </div>
-    </Router>
+        <NavBar />
+        <Routes>
+          <Route
+            path="/constructor-standings"
+            element={<ConstructorList />}
+          />
+          <Route path="/driver-standings" element={<DriverList />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </>
+    </BrowserRouter>
   );
 }
 
