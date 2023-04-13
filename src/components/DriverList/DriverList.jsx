@@ -2,7 +2,7 @@ import './driverlist.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const url = 'http://ergast.com/api/f1/current/driverStandings.json';
+const url = 'https://ergast.com/api/f1/current/driverStandings.json';
 
 const DriverList = () => {
   const [driverStandings, setDriverStandings] = useState();
@@ -22,10 +22,10 @@ const DriverList = () => {
     fetchData();
   }, []);
 
-  useEffect(
-    () => console.log('drivers', driverStandings),
-    [driverStandings]
-  );
+  // useEffect(
+  //   () => console.log('drivers', driverStandings),
+  //   [driverStandings]
+  // );
 
   return (
     <>

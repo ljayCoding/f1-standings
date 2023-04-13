@@ -2,7 +2,7 @@ import './constructorlist.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const url = 'http://ergast.com/api/f1/current/constructorStandings.json';
+const url = 'https://ergast.com/api/f1/current/constructorStandings.json';
 
 const DriverList = () => {
   const [constructorStandings, setConstructorStandings] = useState();
@@ -23,15 +23,15 @@ const DriverList = () => {
     fetchData();
   }, []);
 
-  useEffect(
-    () => console.log('constructors', constructorStandings),
-    [constructorStandings]
-  );
+  // useEffect(
+  //   () => console.log('constructors', constructorStandings),
+  //   [constructorStandings]
+  // );
 
   return (
     <>
       <table>
-        <thead>
+        <thead style={{ fontWeight: 'bold' }}>
           <tr>
             <td>Position</td>
             <td>Points</td>
