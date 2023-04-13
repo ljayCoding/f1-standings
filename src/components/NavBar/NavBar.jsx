@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
-import { Button, Stack } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { Button, Stack, Box } from '@mui/material';
 
 const NavBar = () => {
   return (
+    <Box sx={{display: "flex", justifyContent: "center"}}>
     <Stack direction="row" sx={{ justifyContent: 'center' }}>
       <Button
         variant="outlined"
-        component={Link}
+        component={NavLink}
         to="/constructor-standings"
         sx={{
           color: '#001D3D',
@@ -20,7 +21,7 @@ const NavBar = () => {
       </Button>
       <Button
         variant="outlined"
-        component={Link}
+        component={NavLink}
         to="/driver-standings"
         sx={{
           color: '#001D3D',
@@ -33,6 +34,7 @@ const NavBar = () => {
         Driver Standings
       </Button>
     </Stack>
+    </Box>
   );
 };
 export default NavBar;
