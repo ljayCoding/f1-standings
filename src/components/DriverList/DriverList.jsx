@@ -5,14 +5,14 @@ import axios from 'axios';
 const url = 'http://ergast.com/api/f1/current/driverStandings.json';
 
 const DriverList = () => {
-  const [drivers, setDrivers] = useState();
+  const [driverStandings, setDriverStandings] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(url);
         const data = await response.data;
-        setDrivers(
+        setDriverStandings(
           data?.MRData?.StandingsTable?.StandingsLists[0]?.DriverStandings
         );
       } catch (error) {
@@ -22,7 +22,10 @@ const DriverList = () => {
     fetchData();
   }, []);
 
-  useEffect(() => console.log('drivers', drivers), [drivers]);
+  useEffect(
+    () => console.log('drivers', driverStandings),
+    [driverStandings]
+  );
 
   return (
     <>
@@ -36,13 +39,16 @@ const DriverList = () => {
           </tr>
         </thead>
         <tbody>
-          {drivers &&
-            drivers.map((driver) => (
-              <tr key={driver.Driver.permanentNumber}>
-                <td>1</td>
-                <td>58</td>
-                <td className="tdName">Lewis Hamilton</td>
-                <td>Mercedes</td>
+          {driverStandings &&
+            driverStandings.map((driverStanding) => (
+              <tr key={driverStanding?.Driver?.permanentNumber}>
+                <td>{driverStanding?.position}</td>
+                <td>{driverStanding?.points}</td>
+                <td className="tdName">
+                  {driverStanding?.Driver?.givenName}{' '}
+                  {driverStanding?.Driver?.familyName}
+                </td>
+                <td>{driverStanding?.Constructors[0]?.name}</td>
               </tr>
             ))}
         </tbody>
