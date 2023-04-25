@@ -22,11 +22,6 @@ const DriverList = () => {
     fetchData();
   }, []);
 
-  // useEffect(
-  //   () => console.log('drivers', driverStandings),
-  //   [driverStandings]
-  // );
-
   return (
     <>
       <table>
@@ -43,12 +38,12 @@ const DriverList = () => {
             driverStandings.map((driverStanding) => (
               <tr key={driverStanding?.Driver?.permanentNumber}>
                 <td>{driverStanding?.position}</td>
-                <td>{driverStanding?.points}</td>
+                <td>{driverStanding?.points.toUpperCase()}</td>
                 <td className="tdName">
-                  {driverStanding?.Driver?.givenName}{' '}
-                  {driverStanding?.Driver?.familyName}
+                  {driverStanding?.Driver?.givenName.toUpperCase()}{' '}
+                  {driverStanding?.Driver?.familyName.toUpperCase()}
                 </td>
-                <td>{driverStanding?.Constructors[0]?.name}</td>
+                <td>{driverStanding?.Constructors[0]?.name.toUpperCase()}</td>
               </tr>
             ))}
         </tbody>
