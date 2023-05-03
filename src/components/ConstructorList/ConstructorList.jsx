@@ -6,6 +6,7 @@ const url = 'https://ergast.com/api/f1/current/constructorStandings.json';
 
 const DriverList = () => {
   const [constructorStandings, setConstructorStandings] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +22,12 @@ const DriverList = () => {
       }
     };
     fetchData();
+    setIsLoading(false);
   }, []);
 
+  if (isLoading) {
+    return <Typography>Loading...</Typography>;
+  }
   return (
     <>
       <table>

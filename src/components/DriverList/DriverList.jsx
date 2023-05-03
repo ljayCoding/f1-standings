@@ -1,11 +1,13 @@
 import './driverlist.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Typography } from '@mui/material';
 
 const url = 'https://ergast.com/api/f1/current/driverStandings.json';
 
 const DriverList = () => {
   const [driverStandings, setDriverStandings] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,8 +22,12 @@ const DriverList = () => {
       }
     };
     fetchData();
+    setIsLoading(false);
   }, []);
 
+  if (isLoading) {
+    return <Typography>Loading...</Typography>;
+  }
   return (
     <>
       <table>
@@ -43,7 +49,9 @@ const DriverList = () => {
                   {driverStanding?.Driver?.givenName.toUpperCase()}{' '}
                   {driverStanding?.Driver?.familyName.toUpperCase()}
                 </td>
-                <td>{driverStanding?.Constructors[0]?.name.toUpperCase()}</td>
+                <td>
+                  {driverStanding?.Constructors[0]?.name.toUpperCase()}
+                </td>
               </tr>
             ))}
         </tbody>
