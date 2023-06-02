@@ -1,12 +1,14 @@
 import './constructorlist.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Loader from '../Loader/Loader';
 
 const url = 'https://ergast.com/api/f1/current/constructorStandings.json';
 
 const DriverList = () => {
   const [constructorStandings, setConstructorStandings] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,16 +19,32 @@ const DriverList = () => {
           data?.MRData?.StandingsTable.StandingsLists[0]
             .ConstructorStandings
         );
+        setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setIsError(error);
+        setIsLoading(false);
       }
     };
     fetchData();
-    setIsLoading(false);
   }, []);
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return <Loader />;
+  }
+  if (isError) {
+    return (
+      <Box
+        sx={{ display: 'block', textAlign: 'center', marginTop: '15px' }}
+      >
+        <Typography sx={{ textShadow: '0px 0px 2px black' }}>
+          {isError}
+        </Typography>
+        <Typography sx={{ textShadow: '0px 0px 2px black' }}>
+          This is most likely an error on the side of the database we use.
+          Please try again later.
+        </Typography>
+      </Box>
+    );
   }
   return (
     <>
